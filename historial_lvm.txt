@@ -1,0 +1,28 @@
+    1  lsblk
+    2  sudo fdisk /dev/sdd
+    3  sudo mkswap /dev/sdd1
+    4  free -h
+    5  sudo swapon /dev/sdd1
+    6  free -h
+    7  sudo fdisk /dev/sdc
+    8  sudo wipefs -a /dev/sdc1
+    9  sudo wipefs -a /dev/sdc2
+   10  sudo pvcreate /dev/sdd2 /dev/sdd3 /dev/sdd5 /dev/sdd6 /dev/sdc1 /dev/sdc2
+   11  sudo pvs
+   12  sudo vgcreate vg_datos /dev/sdc1 /dev/sdd2
+   13  sudo vgcreate vg_web /dev/sdc2
+   14  sudo vgs
+   15  sudo lvcreate -L 1G vg_web -n lv_web1
+   16  sudo lvcreate -L 512M vg_web -n lv_web2
+   17  sudo lvcreate -L 512M vg_web -n lv_web3
+   18  sudo lvs
+   19  sudo mkfs.ext4 /dev/mapper/vg_web-lv_web1
+   20  sudo mkfs.ext4 /dev/mapper/vg_web-lv_web2
+   21  sudo mkfs.ext4 /dev/mapper/vg_web-lv_web3
+   22  cd /home/vagrant/foo
+   23  git clone https://github.com/MaicoMino06/TP2_Mino_Maico.git
+   24  cd TP2_Mino_Maico
+   25  sudo pvs > pvs.txt
+   26  sudo vgs > vgs.txt
+   27  sudo lvs > lvs.txt
+   28  history > historial_lvm.txt
